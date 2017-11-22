@@ -1,0 +1,8 @@
+- copy:
+    src: "{{ role_path }}/files/monitor.sh"
+    dest: /opt/monitor.sh
+
+- cron:
+    name: "Monitor Disk and CPU usage"
+    minute: 5
+    job: "/opt/monitor.sh"
