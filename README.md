@@ -15,7 +15,8 @@ aws_secret_key = "<secret_key>"
 
 Create infrastructure
 ```
-terraform apply
+sudo terraform init
+sudo terraform apply
 ```
 
 Enforce configuration using Ansible
