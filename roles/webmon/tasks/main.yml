@@ -1,6 +1,10 @@
-- copy:
-    src: "{{ role_path }}/files/monitor.sh"
-    dest: /opt/monitor.sh
+- name: Install monitoring script from a template
+  template:
+    src: "{{ item }}.j2"
+    dest: /opt/{{ item }}
+    mode: 0755
+  with_items:
+    - monitor.sh
 
 - cron:
     name: "Monitor Disk and CPU usage"

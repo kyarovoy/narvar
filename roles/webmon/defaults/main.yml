@@ -1,0 +1,9 @@
+---
+cpu_threshold: 80
+disk_threshold: 90
+smtp_server: smtp.gmail.com
+smtp_port: 465
+smtp_user: narvar.monitor@gmail.com
+smtp_pass: 123456qwerty!
+smtp_from: narvar.monitor@gmail.com
+smtp_to: narvar.monitor@gmail.com'

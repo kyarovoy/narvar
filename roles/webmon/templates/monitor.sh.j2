@@ -10,14 +10,14 @@ from email.mime.text import MIMEText
 
 # Parse command line options
 parser = argparse.ArgumentParser(description='This script sends email notifications when resource usage thresholds are reached')
-parser.add_argument('-d', type=float, metavar='disk_threshold', dest='disk_threshold', default = '90', help='Disk threshold in %')
-parser.add_argument('-c', type=float, metavar='cpu_threshold', dest='cpu_threshold', default = '80', help='CPU usage threshold for last 5 mins in %')
-parser.add_argument('--smtp-server', type=str, metavar='smtp_server', dest='smtp_server', default = 'smtp.gmail.com', help='SMTP server')
-parser.add_argument('--smtp-port', type=str, metavar='smtp_port', dest='smtp_port', default = '465', help='SMTP port')
-parser.add_argument('--smtp-user', type=str, metavar='smtp_user', dest='smtp_user', default = 'narvar.monitor@gmail.com', help='SMTP username')
-parser.add_argument('--smtp-pass', type=str, metavar='smtp_pass', dest='smtp_pass', default = '123456qwerty!', help='SMTP password')
-parser.add_argument('--smtp-from', type=str, metavar='smtp_from', dest='smtp_from', default = 'narvar.monitor@gmail.com', help='SMTP from email')
-parser.add_argument('--smtp-to', type=str, metavar='smtp_to', dest='smtp_to', default = 'narvar.monitor@gmail.com', help='Email for notifications')
+parser.add_argument('-d', type=float, metavar='disk_threshold', dest='disk_threshold', default = '{{ disk_threshold }}', help='Disk threshold in %')
+parser.add_argument('-c', type=float, metavar='cpu_threshold', dest='cpu_threshold', default = '{{ cpu_threshold }}', help='CPU usage threshold for last 5 mins in %')
+parser.add_argument('--smtp-server', type=str, metavar='smtp_server', dest='smtp_server', default = '{{ smtp_server }}', help='SMTP server')
+parser.add_argument('--smtp-port', type=str, metavar='smtp_port', dest='smtp_port', default = '{{ smtp_port }}', help='SMTP port')
+parser.add_argument('--smtp-user', type=str, metavar='smtp_user', dest='smtp_user', default = '{{ smtp_user }}', help='SMTP username')
+parser.add_argument('--smtp-pass', type=str, metavar='smtp_pass', dest='smtp_pass', default = '{{ smtp_pass }}', help='SMTP password')
+parser.add_argument('--smtp-from', type=str, metavar='smtp_from', dest='smtp_from', default = '{{ smtp_from }}', help='SMTP from email')
+parser.add_argument('--smtp-to', type=str, metavar='smtp_to', dest='smtp_to', default = '{{ smtp_to }}', help='Email for notifications')
 args = parser.parse_args()
 
 disk_ntuple = namedtuple('partition',  'device mountpoint fstype')
