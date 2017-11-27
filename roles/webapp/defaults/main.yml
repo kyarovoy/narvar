@@ -1,0 +1,4 @@
+---
+app_name: webapp
+app_dir: /opt/webapp
+github_url: https://github.com/kyarovoy/narvar_webapp.git

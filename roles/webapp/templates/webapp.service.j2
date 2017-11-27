@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn server for {{ app_name }}
+After=network.target
+After=syslog.target
+
+[Service]
+User=nginx
+Group=nginx
+Restart=on-failure
+WorkingDirectory={{ app_dir }}
+ExecStart={{ app_dir }}/bin/gunicorn --chdir {{ app_dir }} --bind unix:/tmp/{{ app_name }}.socket wsgi
+
+[Install]
+WantedBy=multi-user.target

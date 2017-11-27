@@ -1,0 +1,3 @@
+- name: Enable SSL for NGINX
+  include_tasks: ssl.yml
+  when: enable_ssl

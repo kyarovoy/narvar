@@ -1,0 +1,44 @@
+- name: Install IUS repo
+  yum:
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+    state: present
+
+- name: Install Python 3.6, GIT, uWSGI
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python36u
+    - python36u-pip
+    - python36u-devel
+    - git
+
+- name: Deploy WebApp from git repo
+  git:
+    dest={{ app_dir }}
+    repo={{ github_url }}
+    update=yes
+    force=yes
+
+- name: Install App dependencies in virtualenv (flask, gunicorn)
+  pip:
+    requirements: "{{ app_dir }}/requirements.txt"
+    virtualenv: "{{ app_dir }}"
+    virtualenv_command: /usr/bin/python3.6 -m venv
+
+- name: Install WebApp service
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/systemd/system/{{ item }}"
+  with_items:
+    - webapp.service
+  notify: restart webapp
+
+
+- name: Configure WebApp in NGINX
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/nginx/conf.d/apps/{{ item }}"
+  with_items:
+    - webapp.conf
+  notify: reload nginx
