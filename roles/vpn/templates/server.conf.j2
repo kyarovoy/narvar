@@ -1,7 +1,0 @@
-dh dh2048.pem
-push "redirect-gateway def1 bypass-dhcp"
-{% for dns in dns_servers %}
-push "dhcp-option DNS {{ dns }}"
-{% endfor %}
-user nobody
-group nobody
