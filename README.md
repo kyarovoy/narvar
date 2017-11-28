@@ -4,7 +4,7 @@
 
 This repository demonstrates how to use modern DevOps toolchain to:
 - define infrastructure as a code and provision it using Terraform (cloud provider is AWS in this example)
-- enforce configuration using Ansible:
+- enforce configuration using Ansible
 
 ### Instructions
 
@@ -46,7 +46,7 @@ All these default settings can easily be changed in [variables.tf](variables.tf)
 ansible-playbook -i inventory narvar.yaml
 ```
 This will apply Ansible roles to all nodes provisioned by Terraform.
-By supplying "-i inventory" we are instructing Ansible to use [dynamic inventory script] (https://github.com/mantl/terraform.py), which builds host list by analyzing Terraform's .tfstate files 
+By supplying "-i inventory" we are instructing Ansible to use [Terraform.PY dynamic inventory script](https://github.com/mantl/terraform.py), which builds host list by analyzing Terraform's .tfstate files 
 
 Ansible roles:
 - web: configures NginX web server (with or without SSL)
@@ -59,7 +59,7 @@ These Ansible roles depend on publicly available roles (Nginx, OpenVPN) from Ans
 #### Connecting to the node using OpenVPN
 
 Ansible playbook configures OpenVPN server on EC2 instance provisioned by Terraform.
-To connect to an existing live demo EC2 node:
+To connect to an existing live demo EC2 node (ec2-52-55-211-215.compute-1.amazonaws.com):
 - Install OpenVPN client (e.g. TunnelBrick for MacOS X)
 - Download [client config file](openvpn_configs/client1-test.ovpn)
 
