@@ -1,2 +1,2 @@
 dependencies:
-  - nginxinc.nginx-oss
+  - { role: "nginxinc.nginx-oss" }

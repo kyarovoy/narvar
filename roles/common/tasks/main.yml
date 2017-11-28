@@ -1,0 +1,46 @@
+- name: Install common packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - bind-utils
+    - iptables-services
+
+- name: Enable EPEL repo
+  yum:
+    name: epel-release
+    state: latest
+
+- name: Disable SELinux configuration
+  selinux:
+    state: disabled
+
+- name: Ensure SELinux is turned off
+  command: /usr/sbin/setenforce 0
+
+- name: Configure IPTables autostart
+  service:
+    name: iptables
+    enabled: yes
+    state: started
+
+- name: Disable IPTables filtering
+  iptables:
+    chain: "{{ item }}"
+    flush: yes
+  with_items:
+    - INPUT
+    - OUTPUT
+    - FORWARD
+
+- name: Save IPTables configuration
+  shell: iptables-save > /etc/sysconfig/iptables
+
+- name: Get FQDN
+  uri:
+    url: http://instance-data.ec2.internal/latest/meta-data/public-hostname
+    return_content: yes
+  register: fqdn
+
+- set_fact:
+    fqdn: "{{ fqdn.content }}"

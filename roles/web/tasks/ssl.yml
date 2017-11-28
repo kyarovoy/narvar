@@ -6,15 +6,6 @@
     group: nginx
     mode: 0700
 
-- name: Get FQDN
-  uri:
-    url: http://instance-data.ec2.internal/latest/meta-data/public-hostname
-    return_content: yes
-  register: fqdn
-
-- set_fact:
-    fqdn: "{{ fqdn.content }}"
-
 - name: Create self-signed SSL certificate
   command: openssl req -new -x509 -days 3650 -nodes -subj "/C=US/ST=Massachusets/L=Boston/O=IT/CN={{ fqdn }}" -out cert.pem -keyout cert.key -extensions v3_ca
   args:

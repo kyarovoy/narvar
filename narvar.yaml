@@ -1,6 +1,8 @@
 - hosts: all
   become: yes
   roles:
+    - common
     - web
     - webmon
     - webapp
+    - {role: kyl191.openvpn, clients: [client1], openvpn_port: 4300, openvpn_client_register_dns: false, openvpn_server_hostname: "{{ fqdn }}" }
