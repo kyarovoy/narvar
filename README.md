@@ -50,7 +50,7 @@ By supplying "-i inventory" we are instructing Ansible to use [Terraform.PY dyna
 
 Ansible roles:
 - web: configures NginX web server (with or without SSL)
-- webmon: installs cron job which monitors Disk and CPU usage and sends email notification if thresholds are met. [Monitoring script](roles/webmon/templates/monitor.sh.j2) is written in Python.
+- webmon: installs cron job which monitors Disk and CPU usage and sends email notification if thresholds are met. [Monitoring script](roles/webmon/templates/monitor.sh.j2) is written in Python and its configuration parameters can be easily changed using [Ansible role variables](roles/webmon/defaults/main.yml)
 - webapp: deploys [modern webapp (Python 3.6, Flask) from GitHub repo](https://github.com/kyarovoy/narvar_webapp) in a separate virtualenv and places it behind NginX: (https://ec2-52-55-211-215.compute-1.amazonaws.com/webapp)
 - vpn: configures OpenVPN server on port 4300
 
