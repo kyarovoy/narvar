@@ -20,7 +20,7 @@
     update=yes
     force=yes
 
-- name: Install App dependencies in virtualenv (flask, gunicorn)
+- name: Install App dependencies in virtualenv
   pip:
     requirements: "{{ app_dir }}/requirements.txt"
     virtualenv: "{{ app_dir }}"
